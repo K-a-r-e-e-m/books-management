@@ -17,7 +17,7 @@ void BooksManagement::AddBookTolibrary()
     int Choice;
     cout <<termcolor::yellow;
     cout << "Enter Book Title: ";
-    fflush(stdin);
+    cin.ignore();
     getline(cin, book.Title);
 
     if (Library.BookExist(book.Title))
@@ -31,7 +31,7 @@ void BooksManagement::AddBookTolibrary()
     {
         cout <<termcolor::yellow;
         cout << "Enter Book Author: ";
-        fflush(stdin);
+        cin.ignore();
         getline(cin, book.Author);
         cout << "1. Fiction\n2. History\n3. Mystery\n4. Science\n";
         cout << "choice Book Category: ";
@@ -160,7 +160,7 @@ void BooksManagement::SearchForBook()
         cout <<termcolor::on_yellow;
         cout << "Enter Book Title: ";
         cout <<termcolor::reset;
-        fflush(stdin);
+        cin.ignore();
         getline(cin, Title);
         Book *Temp = Library.Search(Title);
         if (Temp->Title == "")
@@ -187,31 +187,39 @@ void BooksManagement::UpdateBook()
     Book *book = nullptr;
     int Choice;
 
+    // Get Book Title
     cout << "Enter Book Title: ";
-    fflush(stdin);
+    cin.ignore(); // Clear leftover newline character
     getline(cin, Title);
     book = Library.Search(Title);
+
     if (book == nullptr)
     {
+        cout << "Book not found!\n";
     }
     else
     {
         Library.PrintBook(*book);
 
-        cout <<termcolor::yellow;
+        cout << termcolor::yellow;
         cout << "\nEnter New Data\n\n";
-        cout <<termcolor::yellow;
+        cout << termcolor::reset;
 
+        // Update Title
         cout << "Enter Book Title: ";
-        fflush(stdin);
-        getline(cin, book->Title);
+        getline(cin, book->Title); // Directly read the new title
 
+        // Update Author
         cout << "Enter Book Author: ";
-        fflush(stdin);
-        getline(cin, book->Author);
+        getline(cin, book->Author); // Directly read the new author
+
+        // Update Category
         cout << "1. Fiction\n2. History\n3. Mystery\n4. Science\n";
-        cout << "choice Book Category: ";
+        cout << "Choose Book Category: ";
         cin >> Choice;
+
+        // Clear buffer after numeric input
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (Choice)
         {
@@ -233,6 +241,7 @@ void BooksManagement::UpdateBook()
             break;
         }
 
+        // Update Price
         cout << "Enter Book Price: ";
         cin >> book->Price;
 
@@ -248,10 +257,10 @@ void BooksManagement::UpdateBook()
             cin >> book->Price;
         }
 
-        cout <<termcolor::bright_white;
-        cout <<termcolor::on_bright_green;
-        cout <<"Update Done\n";
-        cout <<termcolor::reset;
+        cout << termcolor::bright_white;
+        cout << termcolor::on_bright_green;
+        cout << "Update Done\n";
+        cout << termcolor::reset;
     }
 }
 
