@@ -31,19 +31,48 @@ A doubly linked list allows traversal in both directions (forward and backward),
 To run this project, ensure you have a C++ compiler installed on your system. Here are the general steps to compile and run the project:
 
 1. **Clone the repository**:
-        
-    `git clone https://github.com/K-a-r-e-e-m/books-management.git`
-    
-    `cd books-management`
-    
-2. **Compile the code**:
-    
-    `g++ -o books_management main.cpp`
-    
-3. **Run the program**:
 
-    `./books_management`
-    
+    ```bash
+    git clone https://github.com/K-a-r-e-e-m/books-management.git
+
+    cd executables
+    ```
+
+2. **Run the program**:
+
+    - For Linux/macOS:
+        ```bash
+        ./books_management_linux
+        ```
+    - For Windows:
+        ```bash
+        .\books_management_windows.exe
+        ```
+
+    Or, if you prefer to compile it yourself, follow the next steps:
+
+3. **Compile the code**:
+
+    - For Linux/macOS:
+        ```bash
+        g++ -o books_management main.cpp
+        ```
+
+    - For Windows (using MinGW or another compiler):
+        ```bash
+        g++ -o books_management_windows.exe main.cpp
+        ```
+
+4. **Run the compiled program**:
+
+    - For Linux/macOS:
+        ```bash
+        ./books_management
+        ```
+    - For Windows:
+        ```bash
+        .\books_management_windows.exe
+        ```
 
 ## Usage
 
@@ -89,3 +118,19 @@ Update Done
 - **DoublyLinkedList Class**: Manages the list of books, providing methods to add, remove, search, and update books.
 - **BooksManagement Class**: Handles the management of the books, including adding, updating, and searching for books.
 - **Library**: A container class or function (not shown here) responsible for storing and managing the collection of books using the doubly linked list.
+
+## File Structure
+```
+.
+├── Book.h
+├── BooksManagement.cpp
+├── BooksManagement.h
+├── DoubleLinkedList.cpp
+├── DoubleLinkedList.h
+├── README.md
+├── executables
+│   ├── books_management_linux
+│   └── books_management_windows.exe
+├── main.cpp
+└── termcolor.hpp
+```
